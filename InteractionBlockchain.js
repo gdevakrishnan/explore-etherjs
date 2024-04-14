@@ -8,5 +8,13 @@ const { INFURA_API_KEY } = process.env;
 
 // To get provider using the infura api by using this we can interact with the blockchain and the ipfs network
 const provider = new ethers.providers.JsonRpcProvider(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`);
-
+console.log("provider: ");
 console.log(provider);
+
+// To get the blocknumber using the provider
+const queryBlockchain = async () => {
+    const blockNumber = await provider.getBlockNumber();
+    console.log(`The Current Block Number is: ${blockNumber}`);
+}
+
+queryBlockchain();
