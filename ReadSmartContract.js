@@ -13,7 +13,7 @@
 const ethers = require("ethers");
 require("dotenv").config();
 
-const { INFURA_API_KEY } = process.env;
+const { INFURA_API_KEY, WALLET_ADDRESS } = process.env;
 const provider = new ethers.providers.JsonRpcProvider(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`);
 
 // The CONTRACT_ADDRESS and CONTRACT_ABI are necessary to interact with the blockchain network
@@ -114,15 +114,39 @@ const CONTRACT_ABI = [
 
 // By using CONTRACT_ADDRESS and CONTRACT_ABI to create a instance of out smart contract to interact with the blockchain network
 
-const ContractRead = () => {
+const ContractRead = async () => {
     const WalletContract = new ethers.Contract(
         CONTRACT_ADDRESS,
         CONTRACT_ABI,
         provider
     );
 
-    console.log("The instance of our contract: ");
-    console.log(WalletContract);
+    // console.log("The instance of our contract: ");
+    // console.log(WalletContract);
+
     // By using the above contract instance you can only able to read the blockchain network 
+    
+    // --------------------------------------------------------------------------
+    // Uncomment the below code and run
+
+    const contractName = await WalletContract.name();
+    console.log("The contract name is: ", contractName);
+
+    // --------------------------------------------------------------------------
+    
+    // const numValue = await WalletContract.getValue();
+    // console.log("The value of num in Big Number: ", numValue);    // The default value of get number is BN
+    // console.log("The value of num in Integer: ", numValue.toString());
+
+    // --------------------------------------------------------------------------
+    
+    // const contractBalance = await WalletContract.contractBalance();
+    // console.log("The contract balance in Big Number: ", contractBalance);
+    // console.log("The contract balance in Eth: ", ethers.utils.formatEther(contractBalance));
+
+    // --------------------------------------------------------------------------
+
+    // const accountBalance = await WalletContract.accountBalance(WALLET_ADDRESS);
+    // console.log(`Account [${WALLET_ADDRESS}] balance in Ether: `, ethers.utils.formatEther(accountBalance));
 }
 ContractRead();
