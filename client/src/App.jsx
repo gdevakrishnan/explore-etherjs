@@ -1,7 +1,9 @@
 import { ethers } from 'ethers';
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 function App() {
+
+  const [userAddress, setUserAddress] = useState(null);
 
   const CONTRACT_ADDRESS = "0x8eB0Cb417c257AD5b67b68eF8B4e2331c0AD272A";
   const CONTRACT_ABI = [
@@ -103,6 +105,8 @@ function App() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
+      const address = await signer.getAddress();
+      setUserAddress(address);
 
       const WalletContract = new ethers.Contract( // It is used to write on blockchain network
         CONTRACT_ADDRESS,
@@ -110,7 +114,7 @@ function App() {
         signer
       );
 
-      // await WalletContract.setValue(2354);   // To set value for num
+      await WalletContract.setValue(2354);   // To set value for num
 
       /*
         // syntax to send ether
@@ -118,13 +122,17 @@ function App() {
         await contractInstance.sendEthFunction({value: ethers.utils.parseEther("amount_of_eth")})
       */
       await WalletContract.sendEthContract({value: ethers.utils.parseEther("0.01")})
-      
+
+
+      // Send Ether to the user
+      // await WalletContract.sendEthUser("second_account_address", {value: ethers.utils.parseEther("amount_in_eth")})
+
       // #############################################################################################
       // const provider = new ethers.providers.Web3Provider(window.ethereum);
       // It is used to create a provider object for ethers.js using the Web3Provider class. 
       // window.ethereum: This is a reference to the Ethereum provider injected by MetaMask or other Ethereum-compatible browsers.
-      
-      
+
+
       // await provider.send("eth_requestAccounts", []);
       // It triggers to open the metamask or any wallet
       // This line is used to request access to the user's Ethereum accounts through MetaMask or a similar Ethereum provider. [] => used to pass parameters to the metamask
@@ -140,6 +148,9 @@ function App() {
   return (
     <Fragment>
       <h1>Etherjs</h1>
+      <p>user address: {
+        (userAddress) ? userAddress : null
+      }</p>
     </Fragment>
   )
 }
