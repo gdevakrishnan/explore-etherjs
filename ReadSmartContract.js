@@ -134,15 +134,15 @@ const ContractRead = async () => {
 
     // --------------------------------------------------------------------------
     
-    const numValue = await WalletContract.getValue();
-    console.log("The value of num in Big Number: ", numValue);    // The default value of get number is BN
-    console.log("The value of num in Integer: ", numValue.toString());
+    // const numValue = await WalletContract.getValue();
+    // console.log("The value of num in Big Number: ", numValue);    // The default value of get number is BN
+    // console.log("The value of num in Integer: ", numValue.toString());
 
     // --------------------------------------------------------------------------
     
-    // const contractBalance = await WalletContract.contractBalance();
-    // console.log("The contract balance in Big Number: ", contractBalance);
-    // console.log("The contract balance in Eth: ", ethers.utils.formatEther(contractBalance));
+    const contractBalance = await WalletContract.contractBalance();
+    console.log("The contract balance in Big Number: ", contractBalance);
+    console.log("The contract balance in Eth: ", ethers.utils.formatEther(contractBalance));
 
     // --------------------------------------------------------------------------
 

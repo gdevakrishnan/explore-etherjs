@@ -110,8 +110,16 @@ function App() {
         signer
       );
 
-      await WalletContract.setValue(2354);
+      // await WalletContract.setValue(2354);   // To set value for num
+
+      /*
+        // syntax to send ether
+
+        await contractInstance.sendEthFunction({value: ethers.utils.parseEther("amount_of_eth")})
+      */
+      await WalletContract.sendEthContract({value: ethers.utils.parseEther("0.01")})
       
+      // #############################################################################################
       // const provider = new ethers.providers.Web3Provider(window.ethereum);
       // It is used to create a provider object for ethers.js using the Web3Provider class. 
       // window.ethereum: This is a reference to the Ethereum provider injected by MetaMask or other Ethereum-compatible browsers.
