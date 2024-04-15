@@ -129,14 +129,14 @@ const ContractRead = async () => {
     // --------------------------------------------------------------------------
     // Uncomment the below code and run
 
-    const contractName = await WalletContract.name();
-    console.log("The contract name is: ", contractName);
+    // const contractName = await WalletContract.name();
+    // console.log("The contract name is: ", contractName);
 
     // --------------------------------------------------------------------------
     
-    // const numValue = await WalletContract.getValue();
-    // console.log("The value of num in Big Number: ", numValue);    // The default value of get number is BN
-    // console.log("The value of num in Integer: ", numValue.toString());
+    const numValue = await WalletContract.getValue();
+    console.log("The value of num in Big Number: ", numValue);    // The default value of get number is BN
+    console.log("The value of num in Integer: ", numValue.toString());
 
     // --------------------------------------------------------------------------
     
