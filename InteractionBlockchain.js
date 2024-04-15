@@ -6,6 +6,8 @@ require('dotenv').config();
 
 const { INFURA_API_KEY, WALLET_ADDRESS } = process.env;
 
+// #############################################################################
+
 // To get provider using the infura api by using this we can interact with the blockchain and the ipfs network
 const provider = new ethers.providers.JsonRpcProvider(`https://sepolia.infura.io/v3/${INFURA_API_KEY}`);
 console.log("provider: ");
@@ -17,6 +19,8 @@ const queryBlockchain = async () => {
     console.log(`\nThe Current Block Number is: ${blockNumber}`);
 }
 queryBlockchain();
+
+// #############################################################################
 
 // To get Balance of an Wallet Address and Log in the formats of Big Number, Eth (Ether), Wei
 const accountBalance = async () => {
@@ -32,5 +36,4 @@ const accountBalance = async () => {
     const BalanceWei = ethers.utils.parseEther(BalanceEth);
     console.log("3. Account Balance in Wei: ", BalanceWei.toString());
 }
-
 accountBalance();
