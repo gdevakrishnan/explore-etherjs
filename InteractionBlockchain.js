@@ -19,6 +19,7 @@ const queryBlockchain = async () => {
     const blockNumber = await provider.getBlockNumber();
     console.log(`\nThe Current Block Number is: ${blockNumber}`);
 }
+
 queryBlockchain();
 
 // #############################################################################
@@ -37,4 +38,5 @@ const accountBalance = async () => {
     const BalanceWei = ethers.utils.parseEther(BalanceEth);
     console.log("3. Account Balance in Wei: ", BalanceWei.toString());
 }
+
 accountBalance();
